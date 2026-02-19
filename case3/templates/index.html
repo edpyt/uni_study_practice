@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кейс-задача №3</title>
+    <style>
+* {
+  font-size: x-large;
+}
+
+    .box {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 30%;
+      gap: 10px;
+    }
+
+    .btn-submit {
+      background-color: green;
+      border-radius: 5px;
+      color: white;
+      width: 100%;
+    }
+
+    #id_username {
+      width: 100%;
+    }
+    </style>
+  </head>
+  <body>
+    {% if not username %}
+    <form class="box" method="post">
+      {%csrf_token%}
+      {{ form }}
+      <button class="btn-submit" type="submit">Submit</button>
+    </form>
+    {% else %}
+    <div class="box">
+      Приветствую, {{ username }}!
+    </div>
+    {% endif %}
+  </body>
+</html>

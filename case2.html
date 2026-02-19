@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кейс-задача №2</title>
+    <style>
+    .box {
+    height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10%;
+    flex-direction: column;
+    gap: 20px;
+    }
+    button { 
+    width: 35%;
+    height: 15vh;
+    font-size: xx-large;
+    border-radius: 5px;
+    background: #EEAECA;
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    }
+    .max-value-msg {
+    font-size: x-large;
+    padding: 15px 30px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    border: 3px solid #333;
+    color: #333;
+    }
+    </style>
+  </head>
+  <body style="background: linear-gradient(#e66465, #9198e5);">
+    <div class="box">
+      <div style="display: flex; width: 100%; justify-content: space-between;">
+        <button id="btn-plus">плюс</button>
+        <button id="btn-minus">минус</button>
+      </div>
+      <p id="warn-msg" class="max-value-msg" hidden>Вы достигли экстремального значения</p>
+      <div style="display: flex; width: 100%; flex-direction: column">
+        <span style="color: white; font-size: x-large">Результат:</span>
+        <input
+          id="result"
+          disabled
+          value="0"
+          type="number" 
+          style="width: 100%; height: 5vh; font-size: x-large; background-color: red; color: black"
+          min="-10"
+          max="10"
+        />
+      </div>
+    </div>
+  </body>
+
+  <script>
+  const btnPlus = document.getElementById("btn-plus");
+  const btnMinus = document.getElementById("btn-minus");
+  const inputResult = document.getElementById("result");
+
+  btnPlus.addEventListener("click", () => btnOnClick('+'));
+  btnMinus.addEventListener("click", () => btnOnClick('-'));
+
+  function btnOnClick(op) {
+    if (op == "+") inputResult.value = parseInt(inputResult.value) + 1
+      else if (op == "-") inputResult.value = parseInt(inputResult.value) - 1
+
+    if (inputResult.value > 0) inputResult.style.backgroundColor = "yellow";
+      else if (inputResult.value < 0) inputResult.style.backgroundColor = "green";
+        else inputResult.style.backgroundColor = "red";
+
+    btnPlus.disabled = inputResult.value >= 10;
+    btnMinus.disabled = inputResult.value <= -10;
+    document.getElementById("warn-msg").hidden = !(btnPlus.disabled || btnMinus.disabled);
+  }
+  </script>
+</html>
