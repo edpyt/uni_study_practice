@@ -10,7 +10,7 @@ class CalculatorApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Кейс-задача №4")
-        self.root.geometry("450x400")
+        self.root.geometry("550x400")
         self.root.resizable(False, False)
 
         self.style = ttk.Style()
@@ -185,4 +185,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
